@@ -41,7 +41,20 @@ namespace Membus
 
 		public void UnWire<T>(Action<T> handler)
 		{
+			var type = typeof(T);
+			var handlers = _handlers[type];
 
+			if (handlers == null)
+			{
+				return;
+			}
+
+			var hash = handler.GetHashCode();
+
+			if (handlers.ContainsKey(hash))
+			{
+				handlers.Remove(hash);
+			}
 		}
 
 		public void AutoWire(object host)
