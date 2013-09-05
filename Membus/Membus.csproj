@@ -39,7 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoWire.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Handler.cs" />
     <Compile Include="IBus.cs" />
     <Compile Include="InMemoryBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
