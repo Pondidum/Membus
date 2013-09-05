@@ -37,16 +37,9 @@ namespace Membus
 				var handler = new Handler(action.GetHashCode(), action);
 
 				handlers.Add(type, handler);
+
+				_wire(type, handler);
 			}
-
-			Action wire = () =>
-			{
-				foreach (var handler in handlers)
-				{
-					_wire(handler.Key, handler.Value);
-				}
-
-			};
 
 			Action unwire = () =>
 			{
@@ -55,8 +48,6 @@ namespace Membus
 					_unwire(handler.Key, handler.Value.Hash);
 				}
 			};
-
-			wire();
 
 			_wiring.Add(new WeakWiring(weakHost, unwire));
 		}
