@@ -40,6 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoWire.cs" />
+    <Compile Include="Constraint.cs" />
+    <Compile Include="ConstraintCollection.cs" />
+    <Compile Include="Constraints\BeforeHandlerRegisteredConstraint.cs" />
+    <Compile Include="Constraints\BeforePublishConstraint.cs" />
+    <Compile Include="Constraints\UniqueHandlerConstraint.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="IBus.cs" />

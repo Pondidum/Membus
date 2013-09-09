@@ -10,17 +10,21 @@ namespace Membus
 	{
 		private readonly IDictionary<Type, List<Handler>> _handlers;
 		private readonly AutoWire _wiring;
+		private readonly ConstraintCollection _constraints;
 
 		public InMemoryBus()
 		{
 			_handlers = new Dictionary<Type, List<Handler>>();
 			_wiring = new AutoWire(Wire, UnWire);
+			_constraints = new ConstraintCollection();
 		}
 
+		public ConstraintCollection Constraints { get { return _constraints; }}
 
 		public void Publish<T>(T message)
 		{
 			_wiring.Tidy();
+			_constraints.BeforePublish(message);
 
 			var type = typeof(T);
 			var handlers = _handlers.GetOrDefault(type);
@@ -45,6 +49,8 @@ namespace Membus
 
 		private void Wire(Type type, Handler handler)
 		{
+			_constraints.BeforeHandlerRegistered(type, handler.Action);
+
 			var handlers = _handlers.GetOrDefault(type);
 
 			if (handlers == null)

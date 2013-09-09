@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InMemoryBusTests\AutoWireTests.cs" />
+    <Compile Include="InMemoryBusTests\ConstraintTests.cs" />
     <Compile Include="InMemoryBusTests\WiringTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scratchpad.cs" />
