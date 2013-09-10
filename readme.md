@@ -3,9 +3,12 @@ Usage
 
 	public class Form1 : Form
 	{
+		private readonly IBus _bus;
+
 		public Form1(IBus bus)
 		{
-			bus.AutoWire(this);
+			_bus = bus;
+			_bus.AutoWire(this);
 		}
 
 		private void Handle(SomeMessage message)
@@ -14,4 +17,13 @@ Usage
 			// unwiring will automagically happen on dispose
 		}
 
+		private void CreateButton_OnClick(Object sender, EventArgs e)
+		{
+			_bus.Publish(new CandidateCreatedEvent{
+				Name = txtName.Text,
+				Sex = cmbSex as Gender,
+			});
+		}
+
 	}
+	
